@@ -8,6 +8,9 @@ const KOPAING_SPEED = 12.0;
 var cactus = preload("res://cactus.tscn")
 var spawner = preload("res://kopeng_spawner.tscn")
 
+var kopeng = preload("res://kopeng.tscn")
+
+
 var cactus_cooldown = 2.0
 var kopeng_cooldown = 10.0
 var cta_cooldown = 2.0
@@ -66,13 +69,13 @@ func _process(delta: float) -> void:
 		cactus_cooldown = 2.0
 		var k = cactus.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
-		get_tree().root.add_child(k)
+		get_node("/root/World").add_child(k)
 
 	if kopeng_cooldown < 0:
 		kopeng_cooldown = 10.0
 		var k = spawner.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
-		get_tree().root.add_child(k)
+		get_node("/root/World").add_child(k)
 
 
 func _physics_process(_delta):
@@ -99,3 +102,8 @@ func _physics_process(_delta):
 
 	for leader in leaders:
 		leader.current_leader = most_advanced
+
+
+func _on_button_button_up():
+	# reload scene
+	get_tree().reload_current_scene()

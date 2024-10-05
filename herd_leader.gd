@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			if current_leader != null:
 				current_leader.add_follower(k)
 
-			get_tree().root.add_child(k)
+			get_node("/root/World").add_child(k)
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta
 	if Input.is_action_pressed("right"):

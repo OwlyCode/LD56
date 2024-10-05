@@ -158,3 +158,5 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Kopeng wanna run again?"
+
+[connection signal="button_up" from="GameOver/Button" to="GameController" method="_on_button_button_up"]
