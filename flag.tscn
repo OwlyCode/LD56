@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4axk5w5gvdw4"]
+
+[ext_resource type="Texture2D" uid="uid://dyep186d5dgs7" path="res://flag.png" id="1_yyxug"]
+[ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="2_g7p3d"]
+
+[node name="Node3D" type="Node3D" groups=["Moving"]]
+
+[node name="Flag" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21977, 0)
+billboard = 1
+texture = ExtResource("1_yyxug")
+
+[node name="GroundAnchor" parent="." instance=ExtResource("2_g7p3d")]
