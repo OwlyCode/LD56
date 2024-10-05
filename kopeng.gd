@@ -7,11 +7,6 @@ func _ready() -> void:
 	controller.kopaings.append(self)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
 	# use global coordinates, not local to node
