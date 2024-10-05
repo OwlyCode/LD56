@@ -21,8 +21,3 @@ func _process(delta: float) -> void:
 
 
 	$Cylinder.rotation_degrees.x += 180.0 * delta
-
-	# var material = $Cylinder.material_override;
-
-	# material.uv1_offset.x = -position.z * 2.75;
-	# # material.uv1_offset.y = position.x * 0.85;
