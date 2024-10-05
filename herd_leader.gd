@@ -9,6 +9,8 @@ var speed = 12.0
 
 var kopeng = preload("res://kopeng.tscn")
 
+var followers = []
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("forward"):

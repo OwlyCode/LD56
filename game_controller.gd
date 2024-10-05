@@ -5,7 +5,6 @@ const LEADER_FOLLOW_FORCE = 12.0;
 const KOPAING_PUSH_BACK = 6.0;
 const KOPAING_SPEED = 12.0;
 
-var kopaings = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +14,27 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _physics_process(delta):
+	var kopaings = get_tree().get_nodes_in_group("Kopaing")
+	var leaderless = []
+	var most_advanced = null;
+
+	for kopaing in kopaings:
+		if kopaing.leader == null:
+			if most_advanced == null or kopaing.position.z < most_advanced.position.z:
+				most_advanced = kopaing
+			leaderless.append(kopaing)
+
+	if leaderless.is_empty():
+		print("NO LEADERRRR")
+
+	for kopaing in leaderless:
+		if kopaing == most_advanced:
+			continue
+
+
+		most_advanced.add_follower(kopaing)
 
 # const CELL_SIZE = 1.5
 

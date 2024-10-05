@@ -2,12 +2,44 @@ extends Node3D
 
 @onready var controller = get_node("/root/World/GameController")
 
+var followers = []
+var leader = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	controller.kopaings.append(self)
+	pass
 
+func handle_followers():
+	if len(followers) > 9:
+		var excluded = followers.pop_back()
+		# Get random follower and gives it the excluded follower
+		var random_follower = followers[randi() % followers.size()]
+		random_follower.add_follower(excluded)
+
+func add_follower(follower):
+	self.followers.append(follower)
+	follower.leader = self
+
+func get_current_leader():
+	var current_leader = leader
+
+	$Sprite3D.modulate = Color(1, 1, 1)
+
+	if current_leader == null:
+		$Sprite3D.modulate = Color(1, 0, 0)
+
+		var leaders = get_tree().get_nodes_in_group("Leader")
+
+		if leaders.is_empty():
+			return null
+
+		current_leader = leaders[0]
+
+	return current_leader
 
 func _physics_process(delta):
+	handle_followers()
+
 	var space_state = get_world_3d().direct_space_state
 	# use global coordinates, not local to node
 	var query = PhysicsRayQueryParameters3D.create(position + Vector3(0, 1000, 0), position + Vector3(0, -1000, 0))
@@ -34,14 +66,9 @@ const KOPAING_PUSH_BACK = 6.0;
 const KOPAING_SPEED = 12.0;
 
 func pack_leader(movement_wish, delta):
-	var leaders = get_tree().get_nodes_in_group("Leader")
+	var current_leader = get_current_leader()
 
-	if leaders.is_empty():
-		return movement_wish
-
-	var leader = leaders[0]
-
-	var target_position = leader.position + Vector3.BACK * 1.2;
+	var target_position = current_leader.position + Vector3.BACK * 1.2;
 
 	var distance = position.distance_to(target_position)
 
@@ -52,21 +79,18 @@ func pack_leader(movement_wish, delta):
 	return movement_wish
 
 func align_with_leader(movement_wish, delta):
-	var leaders = get_tree().get_nodes_in_group("Leader")
+	var current_leader = get_current_leader()
 
-	if leaders.is_empty():
-		return movement_wish
-
-	var leader = leaders[0]
-
-	var distance = leader.position.x - position.x
+	var distance = current_leader.position.x - position.x
 
 	movement_wish += Vector3(distance * LEADER_FOLLOW_FORCE * delta, 0, 0)
 
 	return movement_wish
 
 func push_back(movement_wish, delta):
-	var others = get_tree().get_nodes_in_group("Kopaing")
+	# var others = get_tree().get_nodes_in_group("Kopaing")
+
+	var others = get_current_leader().followers.duplicate(false) # Shallow copy
 
 	for other in others:
 		if other == self:
