@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://by3k7deg3et28"]
+
+[ext_resource type="Shader" path="res://bend.gdshader" id="1_f1glj"]
+[ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="2_x0bra"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_f1glj")
+shader_parameter/BASE_TEX = ExtResource("2_x0bra")
