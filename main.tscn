@@ -96,23 +96,52 @@ material = SubResource("StandardMaterial3D_fvh20")
 transform = Transform3D(1, 0, 0, 3.10862e-15, 1, 8.88178e-16, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_rrtby")
 
-[node name="RunCTA" type="RichTextLabel" parent="."]
+[node name="StartScreen" type="Panel" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -214.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RunCTA" type="RichTextLabel" parent="StartScreen"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -978.0
-offset_top = -506.5
+offset_top = -157.5
 offset_right = 978.0
-offset_bottom = 506.5
+offset_bottom = 855.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center][wave amp=100.0, freq=15.0]KOPENG RUN![/wave][/center]"
+text = "[font_size=70][center][wave amp=50.0, freq=15.0]KOPENG RUN![/wave][/center][/font_size]
+[font_size=25][center]
+Made for Ludum Dare 56: Tiny Creatures
+By Owlycode[/center][/font_size]"
+
+[node name="Button" type="Button" parent="StartScreen/RunCTA"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_top = 231.0
+offset_right = 107.0
+offset_bottom = 262.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Kopeng wanna run? Lezgo!"
 
 [node name="GameOver" type="Panel" parent="."]
 visible = false

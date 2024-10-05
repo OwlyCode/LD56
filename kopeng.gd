@@ -64,7 +64,7 @@ func _physics_process(delta):
 
 const LEADER_PACKING_FORCE = 5.0;
 const LEADER_FOLLOW_FORCE = 12.0;
-const KOPAING_PUSH_BACK = 6.0;
+const KOPAING_PUSH_BACK = 10.0;
 const KOPAING_SPEED = 12.0;
 
 func pack_leader(movement_wish, delta):

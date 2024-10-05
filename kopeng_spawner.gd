@@ -28,9 +28,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			for child in get_children():
 				if child.is_in_group("Kopaing"):
 					child.waiting = false;
+					var pos = child.global_position
 					remove_child(child)
 					get_node("/root/World").add_child(child)
 					print(leaders[0].current_leader)
 					leaders[0].current_leader.add_follower(child)
+					child.global_position = pos
 
 			queue_free()

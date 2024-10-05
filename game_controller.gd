@@ -18,6 +18,7 @@ var cta_cooldown = 2.0
 var game_speed = 12.0
 
 var game_over = false
+var main_menu = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,14 +37,15 @@ func detect_gameover():
 		game_over = true
 
 func handle_cta(delta):
-	var cta = get_node("/root/World/RunCTA")
+	var cta = get_node("/root/World/StartScreen")
 
 	if cta_cooldown < 0 or game_over:
 		cta.hide()
 	else:
 		cta.show()
 
-	cta_cooldown -= delta
+	if not main_menu:
+		cta_cooldown -= delta
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,7 +61,7 @@ func _process(delta: float) -> void:
 		if moving.position.z > 10.0:
 			moving.queue_free()
 
-	if game_over:
+	if game_over or main_menu:
 		return
 
 	cactus_cooldown -= delta;

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 	position.z = max(-len(kopaings) * 0.1, -4.0)
 
-	if Input.is_action_just_pressed("forward") and false:
+	if Input.is_action_just_pressed("forward") and true:
 		#position.z -= speed * delta
 		for x in range(1):
 			var k = kopeng.instantiate()
