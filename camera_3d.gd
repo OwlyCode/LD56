@@ -13,4 +13,9 @@ func _process(delta: float) -> void:
 	# 	position.x -= speed * delta
 
 
+	var k = get_tree().get_nodes_in_group("Kopaing")
+
+
+	print(len(k))
+
 	$Cylinder.rotation_degrees.x += 180.0 * delta

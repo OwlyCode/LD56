@@ -11,12 +11,12 @@ var kopeng = preload("res://kopeng.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("forward"):
+	if Input.is_action_just_pressed("forward"):
 		#position.z -= speed * delta
-		var k = kopeng.instantiate();
-		k.position = position + Vector3.FORWARD * 1.2;
-		get_tree().root.add_child(k)
-		pass
+		for x in range(10):
+			var k = kopeng.instantiate()
+			k.position = position + Vector3.BACK * 1.2;
+			get_tree().root.add_child(k)
 	if Input.is_action_pressed("backward"):
 		position.z += speed * delta
 	if Input.is_action_pressed("left"):

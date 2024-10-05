@@ -1,9 +1,10 @@
 extends Node3D
 
+@onready var controller = get_node("/root/World/GameController")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	controller.kopaings.append(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +23,6 @@ func _physics_process(delta):
 	movement_wish = pack_leader(movement_wish, delta)
 	movement_wish = align_with_leader(movement_wish, delta)
 	movement_wish = push_back(movement_wish, delta)
-
 
 	position += movement_wish
 
@@ -77,14 +77,18 @@ func push_back(movement_wish, delta):
 		if other == self:
 			continue
 
-		var distance = position.distance_to(other.position)
+		var distance = position.distance_squared_to(other.position)
 
-		if distance == 0.0:
-			movement_wish += Vector3.LEFT * pow(KOPAING_PUSH_BACK, 0.5 / distance) * delta;
+		if distance < 0.01:
+			movement_wish += Vector3.LEFT * KOPAING_PUSH_BACK * delta;
 			continue
 
 		if distance < 1.5:
 			var direction = (position - other.position).normalized()
-			movement_wish += direction * pow(KOPAING_PUSH_BACK, 0.5 / distance) * delta;
+			var power = pow(KOPAING_PUSH_BACK, 0.5 / distance)
+
+			power = clamp(power, 0, 3)
+
+			movement_wish += direction * power * delta;
 
 	return movement_wish
