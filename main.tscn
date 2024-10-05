@@ -1,5 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=14 format=3 uid="uid://jes66804ybiy"]
 
+[ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
+[ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="2_plka5"]
 [ext_resource type="PackedScene" uid="uid://dq2owrv45wmvx" path="res://kopeng.tscn" id="2_sfymo"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
@@ -44,11 +46,36 @@ data = PackedVector3Array(0, 150, 30, 0.2945, 150, 29.9986, 0, 90, 30, 0.2945, 1
 
 [node name="World" type="Node3D"]
 
-[node name="Kopeng2" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 2.48804)
+[node name="HerdLeader" type="Node3D" parent="." groups=["Leader"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.995575)
+script = ExtResource("1_bvxos")
+
+[node name="Sprite3D" type="Sprite3D" parent="HerdLeader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+modulate = Color(1, 0.458457, 0.277336, 1)
+billboard = 1
+texture = ExtResource("2_plka5")
 
 [node name="Kopeng" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.31209, -20.0961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, -0.311505)
+
+[node name="Kopeng2" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.855899, 10.6242, 0.0879509)
+
+[node name="Kopeng3" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 2.38316)
+
+[node name="Kopeng4" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 1.40992)
+
+[node name="Kopeng5" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 4.21117)
+
+[node name="Kopeng6" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3688, 10.6242, 1.40992)
+
+[node name="Kopeng7" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64163, 10.6242, 1.40992)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.898074, 0.439845, 0, -0.439845, 0.898074, 0, 1.35726, 9.49352)
@@ -57,19 +84,19 @@ size = 20.0
 script = ExtResource("3_7y6su")
 
 [node name="Cylinder" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(-4.37114e-08, -1, 0, 0.970871, -4.24382e-08, -0.239601, 0.239601, -1.04733e-08, 0.970871, 7.62939e-06, -20.3733, -28.4276)
+transform = Transform3D(-4.37114e-08, -1, 0, 0.970871, -4.24382e-08, -0.239601, 0.239601, -1.04733e-08, 0.970871, 7.62939e-06, -15.5711, -41.4238)
 material_override = SubResource("StandardMaterial3D_rgpku")
 mesh = SubResource("CylinderMesh_4vr40")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Camera3D/Cylinder"]
 transform = Transform3D(0.977302, 9.92205e-10, -0.211854, 9.9217e-10, 1, 9.26044e-09, 0.211854, -9.26045e-09, 0.977302, 0, -14.3304, 0)
-radius = 50.0
+radius = 35.0
 sides = 32
 material = SubResource("StandardMaterial3D_btlat")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Camera3D/Cylinder"]
 transform = Transform3D(0.977302, 9.92205e-10, -0.211854, 9.92163e-10, 1, 9.26044e-09, 0.211854, -9.26045e-09, 0.977302, 0, 14.5699, 0)
-radius = 50.0
+radius = 35.0
 sides = 32
 material = SubResource("StandardMaterial3D_fvh20")
 

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="1_iyp4s"]
 [ext_resource type="Script" path="res://kopeng.gd" id="2_sr0xw"]
 
-[node name="Kopeng" type="Node3D"]
+[node name="Kopeng" type="Node3D" groups=["Kopaing"]]
 script = ExtResource("2_sr0xw")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
