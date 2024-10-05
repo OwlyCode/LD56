@@ -16,7 +16,7 @@ func handle_followers():
 		if !is_instance_valid(follower):
 			followers.erase(follower)
 
-	if len(followers) > 9:
+	if len(followers) > 4:
 		var excluded = followers.pop_back()
 		# Get random follower and gives it the excluded follower
 		var random_follower = followers[randi() % followers.size()]
@@ -24,8 +24,9 @@ func handle_followers():
 
 
 func add_follower(follower):
-	self.followers.append(follower)
-	follower.leader = self
+	if is_instance_valid(follower):
+		self.followers.append(follower)
+		follower.leader = self
 
 func get_current_leader():
 	var current_leader = leader
@@ -60,20 +61,6 @@ func _physics_process(delta):
 
 		position += movement_wish
 
-	# --- Bind to ground
-	var space_state = get_world_3d().direct_space_state
-	# use global coordinates, not local to node
-	var query = PhysicsRayQueryParameters3D.create(position + Vector3(0, 1000, 0), position + Vector3(0, -1000, 0))
-	query.collision_mask = 1
-
-	var result = space_state.intersect_ray(query)
-
-	if !result.is_empty():
-		position.y = result.position.y
-		visible = true
-	else:
-		visible = false
-
 
 const LEADER_PACKING_FORCE = 5.0;
 const LEADER_FOLLOW_FORCE = 12.0;
@@ -106,6 +93,9 @@ func push_back(movement_wish, delta):
 	# var others = get_tree().get_nodes_in_group("Kopaing")
 
 	var others = get_current_leader().followers.duplicate(false) # Shallow copy
+
+	if leader != null:
+		others.append(leader)
 
 	for other in others:
 		if other == self:

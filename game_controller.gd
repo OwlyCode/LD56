@@ -6,8 +6,10 @@ const KOPAING_PUSH_BACK = 6.0;
 const KOPAING_SPEED = 12.0;
 
 var cactus = preload("res://cactus.tscn")
+var spawner = preload("res://kopeng_spawner.tscn")
 
-var cooldown = 2.0
+var cactus_cooldown = 2.0
+var kopeng_cooldown = 10.0
 
 var game_speed = 12.0
 
@@ -18,11 +20,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	cooldown -= delta;
+	cactus_cooldown -= delta;
+	kopeng_cooldown -= delta;
 
-	if cooldown < 0:
-		cooldown = 2.0
+	if cactus_cooldown < 0:
+		cactus_cooldown = 2.0
 		var k = cactus.instantiate()
+		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
+		get_tree().root.add_child(k)
+
+	if kopeng_cooldown < 0:
+		kopeng_cooldown = 10.0
+		var k = spawner.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
 		get_tree().root.add_child(k)
 
@@ -45,9 +54,16 @@ func _physics_process(_delta):
 				most_advanced = kopaing
 			leaderless.append(kopaing)
 
+
 	for kopaing in leaderless:
 		if kopaing == most_advanced:
 			continue
 
-
 		most_advanced.add_follower(kopaing)
+		print("Adding follower " + str(kopaing) + " to " + str(most_advanced))
+
+
+	var leaders = get_tree().get_nodes_in_group("Leader")
+
+	for leader in leaders:
+		leader.current_leader = most_advanced

@@ -10,6 +10,7 @@ var speed = 12.0
 var kopeng = preload("res://kopeng.tscn")
 
 var followers = []
+var current_leader = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,9 +21,12 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("forward"):
 		#position.z -= speed * delta
-		for x in range(10):
+		for x in range(1):
 			var k = kopeng.instantiate()
 			k.position = position + Vector3.BACK * 1.2;
+			if current_leader != null:
+				current_leader.add_follower(k)
+
 			get_tree().root.add_child(k)
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta

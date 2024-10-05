@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwi065uufoh8w"]
+
+[ext_resource type="Script" path="res://ground_anchor.gd" id="1_wh781"]
+
+[node name="GroundAnchor" type="Node"]
+script = ExtResource("1_wh781")

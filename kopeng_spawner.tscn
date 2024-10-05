@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bet1hav5v45u6"]
+[gd_scene load_steps=5 format=3 uid="uid://bet1hav5v45u6"]
 
 [ext_resource type="Script" path="res://kopeng_spawner.gd" id="1_k2pa8"]
 [ext_resource type="PackedScene" uid="uid://dq2owrv45wmvx" path="res://kopeng.tscn" id="2_wf27k"]
+[ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="3_0ja1u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pr351"]
+radius = 3.0
 
 [node name="KopengSpawner" type="Node3D" groups=["Moving"]]
 script = ExtResource("1_k2pa8")
 
 [node name="Kopeng1" parent="." instance=ExtResource("2_wf27k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.558689, 0.6, 0.927052)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559, 0, 0.927)
 
 [node name="Kopeng2" parent="." instance=ExtResource("2_wf27k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.679426, 0.6, -0.794292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.679, 0, -0.794)
 
 [node name="Kopeng3" parent="." instance=ExtResource("2_wf27k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913465, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_pr351")
+
+[node name="GroundAnchor" parent="Area3D" instance=ExtResource("3_0ja1u")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
