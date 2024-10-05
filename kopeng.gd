@@ -10,11 +10,17 @@ func _ready() -> void:
 	pass
 
 func handle_followers():
+	for follower in followers:
+		if !is_instance_valid(follower):
+			followers.erase(follower)
+			continue
+
 	if len(followers) > 9:
 		var excluded = followers.pop_back()
 		# Get random follower and gives it the excluded follower
 		var random_follower = followers[randi() % followers.size()]
 		random_follower.add_follower(excluded)
+
 
 func add_follower(follower):
 	self.followers.append(follower)
@@ -38,11 +44,17 @@ func get_current_leader():
 	return current_leader
 
 func _physics_process(delta):
+
+	if leader != null && !is_instance_valid(leader):
+		leader = null;
+
 	handle_followers()
 
 	var space_state = get_world_3d().direct_space_state
 	# use global coordinates, not local to node
 	var query = PhysicsRayQueryParameters3D.create(position + Vector3(0, 1000, 0), position + Vector3(0, -1000, 0))
+	query.collision_mask = 1
+
 	var result = space_state.intersect_ray(query)
 
 	var movement_wish = Vector3.ZERO
@@ -94,6 +106,9 @@ func push_back(movement_wish, delta):
 
 	for other in others:
 		if other == self:
+			continue
+
+		if !is_instance_valid(other):
 			continue
 
 		var distance = position.distance_squared_to(other.position)

@@ -26,6 +26,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("right"):
 		position.x += speed * delta
 
+	if position.x > 4.5:
+		position.x = 4.5
+	if position.x < -4.5:
+		position.x = -4.5
+
 
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state

@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="2_plka5"]
-[ext_resource type="PackedScene" uid="uid://dq2owrv45wmvx" path="res://kopeng.tscn" id="2_sfymo"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
+[ext_resource type="PackedScene" uid="uid://qau52spw28ba" path="res://cactus.tscn" id="6_wrd22"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hy8hh"]
 sky_top_color = Color(0.156863, 0.564706, 0.862745, 1)
@@ -60,27 +60,6 @@ modulate = Color(1, 0.458457, 0.277336, 1)
 billboard = 1
 texture = ExtResource("2_plka5")
 
-[node name="Kopeng" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, -0.311505)
-
-[node name="Kopeng2" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.855899, 10.6242, 0.0879509)
-
-[node name="Kopeng3" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 2.38316)
-
-[node name="Kopeng4" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 1.40992)
-
-[node name="Kopeng5" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6242, 4.21117)
-
-[node name="Kopeng6" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3688, 10.6242, 1.40992)
-
-[node name="Kopeng7" parent="." instance=ExtResource("2_sfymo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64163, 10.6242, 1.40992)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.898074, 0.439845, 0, -0.439845, 0.898074, 0, 1.35726, 9.49352)
 environment = SubResource("Environment_jqyjx")
@@ -127,3 +106,6 @@ size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center][wave amp=100.0, freq=15.0]KOPENG RUN![/wave][/center]"
+
+[node name="Cactus" parent="." instance=ExtResource("6_wrd22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61)

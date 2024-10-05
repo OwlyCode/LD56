@@ -13,10 +13,10 @@ func _process(delta: float) -> void:
 	# 	position.x -= speed * delta
 
 
-	var k = get_tree().get_nodes_in_group("Kopaing")
+	# var k = get_tree().get_nodes_in_group("Kopaing")
 
 
-	print(len(k))
+	# print(len(k))
 	# for x in k:
 	# 	print(x.leader)
 	# 	print(x.followers)
