@@ -3,7 +3,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	visible = false
 
 var speed = 12.0
 
@@ -13,14 +13,17 @@ var followers = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
+	var kopaings = get_tree().get_nodes_in_group("Kopaing")
+
+	position.z = max(-len(kopaings) * 0.1, -4.0)
+
 	if Input.is_action_just_pressed("forward"):
 		#position.z -= speed * delta
 		for x in range(10):
 			var k = kopeng.instantiate()
 			k.position = position + Vector3.BACK * 1.2;
 			get_tree().root.add_child(k)
-	if Input.is_action_pressed("backward"):
-		position.z += speed * delta
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta
 	if Input.is_action_pressed("right"):
@@ -40,6 +43,3 @@ func _physics_process(delta):
 
 	if !result.is_empty():
 		position.y = result.position.y
-		visible = true
-	else:
-		visible = false

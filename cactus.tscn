@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cfioqlmtsjvd4" path="res://cactus.png" id="1_00wox"]
 [ext_resource type="Script" path="res://cactus.gd" id="1_436tr"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e5gx6"]
-radius = 0.7
+[sub_resource type="BoxShape3D" id="BoxShape3D_2iqt5"]
+size = Vector3(1.07278, 1, 0.200012)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_436tr")
@@ -19,4 +19,5 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Killzone"]
-shape = SubResource("SphereShape3D_e5gx6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00468445, 0, -0.0415344)
+shape = SubResource("BoxShape3D_2iqt5")

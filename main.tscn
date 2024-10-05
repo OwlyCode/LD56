@@ -52,6 +52,7 @@ script = ExtResource("1_2el1i")
 
 [node name="HerdLeader" type="Node3D" parent="." groups=["Leader"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
 script = ExtResource("1_bvxos")
 
 [node name="Sprite3D" type="Sprite3D" parent="HerdLeader"]
