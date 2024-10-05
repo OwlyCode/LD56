@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="2_plka5"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
-[ext_resource type="PackedScene" uid="uid://qau52spw28ba" path="res://cactus.tscn" id="6_wrd22"]
+[ext_resource type="PackedScene" uid="uid://bet1hav5v45u6" path="res://kopeng_spawner.tscn" id="6_05utb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hy8hh"]
 sky_top_color = Color(0.156863, 0.564706, 0.862745, 1)
@@ -108,5 +108,4 @@ theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center][wave amp=100.0, freq=15.0]KOPENG RUN![/wave][/center]"
 
-[node name="Cactus" parent="." instance=ExtResource("6_wrd22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61)
+[node name="KopengSpawner" parent="." instance=ExtResource("6_05utb")]

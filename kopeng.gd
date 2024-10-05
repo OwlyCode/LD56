@@ -5,6 +5,8 @@ extends Node3D
 var followers = []
 var leader = null
 
+var waiting = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -13,7 +15,6 @@ func handle_followers():
 	for follower in followers:
 		if !is_instance_valid(follower):
 			followers.erase(follower)
-			continue
 
 	if len(followers) > 9:
 		var excluded = followers.pop_back()
@@ -44,26 +45,28 @@ func get_current_leader():
 	return current_leader
 
 func _physics_process(delta):
+	if !waiting:
+	# --- Follow the leader!
+		if leader != null && !is_instance_valid(leader):
+			leader = null;
 
-	if leader != null && !is_instance_valid(leader):
-		leader = null;
+		handle_followers()
 
-	handle_followers()
+		var movement_wish = Vector3.ZERO
 
+		movement_wish = pack_leader(movement_wish, delta)
+		movement_wish = align_with_leader(movement_wish, delta)
+		movement_wish = push_back(movement_wish, delta)
+
+		position += movement_wish
+
+	# --- Bind to ground
 	var space_state = get_world_3d().direct_space_state
 	# use global coordinates, not local to node
 	var query = PhysicsRayQueryParameters3D.create(position + Vector3(0, 1000, 0), position + Vector3(0, -1000, 0))
 	query.collision_mask = 1
 
 	var result = space_state.intersect_ray(query)
-
-	var movement_wish = Vector3.ZERO
-
-	movement_wish = pack_leader(movement_wish, delta)
-	movement_wish = align_with_leader(movement_wish, delta)
-	movement_wish = push_back(movement_wish, delta)
-
-	position += movement_wish
 
 	if !result.is_empty():
 		position.y = result.position.y
