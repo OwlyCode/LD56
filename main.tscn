@@ -53,6 +53,18 @@ bg_color = Color(0.73, 0, 0.0486666, 0.384314)
 [node name="Kopeng" parent="." instance=ExtResource("2_sfymo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0847855)
 
+[node name="Kopeng2" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0847855)
+
+[node name="Kopeng3" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0847855)
+
+[node name="Kopeng4" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0847855)
+
+[node name="Kopeng5" parent="." instance=ExtResource("2_sfymo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0847855)
+
 [node name="GameController" type="Node" parent="."]
 script = ExtResource("1_2el1i")
 
@@ -188,4 +200,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Kopeng wanna run again?"
 
+[connection signal="button_up" from="StartScreen/RunCTA/Button" to="GameController" method="_on_start_button_up"]
 [connection signal="button_up" from="GameOver/Button" to="GameController" method="_on_button_button_up"]
