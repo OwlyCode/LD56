@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://4axk5w5gvdw4"]
+[gd_scene load_steps=5 format=3 uid="uid://4axk5w5gvdw4"]
 
+[ext_resource type="Script" path="res://flag.gd" id="1_1e13j"]
 [ext_resource type="Texture2D" uid="uid://dyep186d5dgs7" path="res://flag.png" id="1_yyxug"]
 [ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="2_g7p3d"]
 
-[node name="Node3D" type="Node3D" groups=["Moving"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_kduxf"]
+size = Vector3(43.0574, 9.11517, 1)
+
+[node name="Flag" type="Node3D" groups=["Moving"]]
+script = ExtResource("1_1e13j")
 
 [node name="Flag" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21977, 0)
@@ -11,3 +16,13 @@ billboard = 1
 texture = ExtResource("1_yyxug")
 
 [node name="GroundAnchor" parent="." instance=ExtResource("2_g7p3d")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304413, 4.05759, 0)
+shape = SubResource("BoxShape3D_kduxf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -9,10 +9,11 @@ var cactus = preload("res://cactus.tscn")
 var spawner = preload("res://kopeng_spawner.tscn")
 
 var kopeng = preload("res://kopeng.tscn")
-
+var flag = preload("res://flag.tscn")
 
 var cactus_cooldown = 2.0
-var kopeng_cooldown = 10.0
+var kopeng_cooldown = 3.0
+var flag_cooldown = 30.0
 
 var game_speed = 12.0
 
@@ -20,8 +21,29 @@ var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.score = 0
 	if not Globals.main_menu:
 		get_node("/root/World/StartScreen").hide()
+
+
+func display_score(delta):
+	var template = "[font_size=45][right]000500[/right][/font_size]"
+	var accumulator_template = "[font_size=45][right][pulse freq=6][color=47f641]+1000[/color][/pulse][/right][/font_size]";
+
+	if Globals.score_accumulator_cooldown > 0.0:
+		template += accumulator_template.replace("1000", str(Globals.score_accumulator))
+		Globals.score_accumulator_cooldown -= delta
+	else:
+		var take = 10
+
+		if Globals.score_accumulator < take:
+			take = Globals.score_accumulator
+
+		Globals.score += take
+		Globals.score_accumulator -= take
+
+	var score_text = get_node("/root/World/Score")
+	score_text.bbcode_text = template.replace("000500", str(Globals.score).lpad(5, "0"))
 
 
 func detect_gameover():
@@ -44,6 +66,7 @@ func _on_start_button_up():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	detect_gameover()
+	display_score(delta)
 
 	var movings = get_tree().get_nodes_in_group("Moving")
 
@@ -58,9 +81,10 @@ func _process(delta: float) -> void:
 
 	cactus_cooldown -= delta;
 	kopeng_cooldown -= delta;
+	flag_cooldown -= delta;
 
 	if cactus_cooldown < 0:
-		cactus_cooldown = 2.0
+		cactus_cooldown = 0.5
 		var k = cactus.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
 		get_node("/root/World").add_child(k)
@@ -69,6 +93,12 @@ func _process(delta: float) -> void:
 		kopeng_cooldown = 10.0
 		var k = spawner.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
+		get_node("/root/World").add_child(k)
+
+	if flag_cooldown < 0:
+		flag_cooldown = 30.0
+		var k = flag.instantiate()
+		k.position = Vector3(-5.0, -200, -40)
 		get_node("/root/World").add_child(k)
 
 
