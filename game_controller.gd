@@ -8,13 +8,22 @@ const KOPAING_SPEED = 12.0;
 var cactus = preload("res://cactus.tscn")
 var spawner = preload("res://kopeng_spawner.tscn")
 
+var chunks = [
+	preload("res://chunks/chunk_borders.tscn"),
+	preload("res://chunks/chunk_left.tscn"),
+	preload("res://chunks/chunk_right.tscn"),
+	preload("res://chunks/chunk_middle.tscn")
+]
+
 var kopeng = preload("res://kopeng.tscn")
 var flag = preload("res://flag.tscn")
 
-const FLAG_COOLDOWN = 5.0 # 30.0
+const FLAG_COOLDOWN = 30.0 # 30.0
+const CACTUS_COOLDOWN = 1.0 # 30.0
+const KOPENG_COOLDOWN = 12.0 # 30.0
 
-var cactus_cooldown = 2.0
-var kopeng_cooldown = 3.0
+var cactus_cooldown = CACTUS_COOLDOWN
+var kopeng_cooldown = KOPENG_COOLDOWN
 var flag_cooldown = FLAG_COOLDOWN
 
 var game_over = false
@@ -90,13 +99,15 @@ func _process(delta: float) -> void:
 	flag_cooldown -= delta;
 
 	if cactus_cooldown < 0:
-		cactus_cooldown = 0.5
-		var k = cactus.instantiate()
-		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
+		var chunk = chunks[randi() % chunks.size()]
+
+		cactus_cooldown = CACTUS_COOLDOWN
+		var k = chunk.instantiate()
+		k.position = Vector3(0.0, -200, -40)
 		get_node("/root/World").add_child(k)
 
 	if kopeng_cooldown < 0:
-		kopeng_cooldown = 10.0
+		kopeng_cooldown = KOPENG_COOLDOWN
 		var k = spawner.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
 		get_node("/root/World").add_child(k)

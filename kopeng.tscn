@@ -219,7 +219,7 @@ alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_gm2r7")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.0246487
+frame_progress = 0.749305
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
