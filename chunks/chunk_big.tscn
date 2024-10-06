@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct22wi7qgq0ad"]
+
+[ext_resource type="Script" path="res://chunk.gd" id="1_suimt"]
+[ext_resource type="PackedScene" uid="uid://qau52spw28ba" path="res://cactus.tscn" id="2_2i1s1"]
+
+[node name="ChunkBorders" type="Node3D"]
+script = ExtResource("1_suimt")
+
+[node name="Node3D3" parent="." instance=ExtResource("2_2i1s1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.5, 0, 0)
+
+[node name="Node3D5" parent="." instance=ExtResource("2_2i1s1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.5, 0, -6.08217)
+
+[node name="Node3D4" parent="." instance=ExtResource("2_2i1s1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.5, 0, -3.863)
