@@ -14,7 +14,6 @@ var flag = preload("res://flag.tscn")
 
 const FLAG_COOLDOWN = 25.0 # 30.0
 const CACTUS_COOLDOWN = 1.0 # 30.0
-const KOPENG_COOLDOWN = 12.0 # 30.0
 
 var chunks = [
 	[1.0, preload("res://chunks/chunk_borders.tscn"), CACTUS_COOLDOWN],
@@ -26,6 +25,8 @@ var chunks = [
 ]
 
 var last_chunk = null
+
+var passed_chunks = 0
 
 func weighted_random(chunks):
 	var total = 0.0
@@ -42,7 +43,6 @@ func weighted_random(chunks):
 	return chunks[-1]
 
 var cactus_cooldown = CACTUS_COOLDOWN
-var kopeng_cooldown = KOPENG_COOLDOWN
 var flag_cooldown = FLAG_COOLDOWN
 
 var game_over = false
@@ -119,21 +119,10 @@ func _process(delta: float) -> void:
 		return
 
 	cactus_cooldown -= delta;
-	kopeng_cooldown -= delta;
 	flag_cooldown -= delta;
 
 	if flag_cooldown < cactus_cooldown:
 		reset_cactus_cooldown(CACTUS_COOLDOWN)
-
-	if kopeng_cooldown < cactus_cooldown:
-		reset_cactus_cooldown(CACTUS_COOLDOWN)
-
-	if kopeng_cooldown < 0:
-		reset_kopeng_cooldown()
-		reset_cactus_cooldown(CACTUS_COOLDOWN)
-		var k = spawner.instantiate()
-		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
-		get_node("/root/World").add_child(k)
 
 
 	if flag_cooldown < 0:
@@ -143,20 +132,30 @@ func _process(delta: float) -> void:
 		k.position = Vector3(-5.0, -200, -40)
 		get_node("/root/World").add_child(k)
 
+
 	if cactus_cooldown < 0:
-		var chunk = weighted_random(chunks)
+		if passed_chunks >= 8:
+			passed_chunks = 0
+			var k = spawner.instantiate()
+			k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
+			get_node("/root/World").add_child(k)
 
-		while last_chunk == chunk:
-			chunk = weighted_random(chunks)
+			reset_cactus_cooldown(CACTUS_COOLDOWN)
+		else:
+			passed_chunks += 1
+			var chunk = weighted_random(chunks)
 
-		last_chunk = chunk
+			while last_chunk == chunk:
+				chunk = weighted_random(chunks)
 
-		cactus_cooldown = chunk[2]
-		reset_cactus_cooldown(cactus_cooldown)
+			last_chunk = chunk
 
-		var k = chunk[1].instantiate()
-		k.position = Vector3(0.0, -200, -40)
-		get_node("/root/World").add_child(k)
+			cactus_cooldown = chunk[2]
+			reset_cactus_cooldown(cactus_cooldown)
+
+			var k = chunk[1].instantiate()
+			k.position = Vector3(0.0, -200, -40)
+			get_node("/root/World").add_child(k)
 
 
 func reset_flag_cooldown():
@@ -164,9 +163,6 @@ func reset_flag_cooldown():
 
 func reset_cactus_cooldown(cooldown):
 	cactus_cooldown = cooldown / (Globals.game_speed / 12.0)
-
-func reset_kopeng_cooldown():
-	kopeng_cooldown = KOPENG_COOLDOWN / (0.5 * Globals.game_speed / 12.0)
 
 func refresh_distance_display():
 	var template = "100m
