@@ -16,11 +16,11 @@ void vertex() {
 
 void fragment() {
 	vec4 tex = texture(BASE_TEX, UV);
-	
+
 	if(tex.a < 0.3) {
 		discard;
 	}
-	
+
 	ALBEDO = tex.rgb;
 	ALPHA = tex.a;
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq2owrv45wmvx"]
+[gd_scene load_steps=12 format=3 uid="uid://dq2owrv45wmvx"]
 
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="1_iyp4s"]
 [ext_resource type="Script" path="res://kopeng.gd" id="2_sr0xw"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="4_dnbl8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_djp6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_300pi"]
+atlas = ExtResource("4_dnbl8")
+region = Rect2(512, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8g84t"]
 atlas = ExtResource("4_dnbl8")
@@ -15,8 +19,24 @@ region = Rect2(0, 0, 256, 256)
 atlas = ExtResource("4_dnbl8")
 region = Rect2(256, 0, 256, 256)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fatt"]
+atlas = ExtResource("4_dnbl8")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acmpv"]
+atlas = ExtResource("4_dnbl8")
+region = Rect2(1024, 0, 256, 256)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gm2r7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_300pi")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8g84t")
@@ -27,6 +47,22 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fatt")
+}],
+"loop": true,
+"name": &"waiting_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acmpv")
+}],
+"loop": true,
+"name": &"waiting_right",
+"speed": 5.0
 }]
 
 [node name="Kopeng" type="Node3D" groups=["Kopaing"]]
@@ -49,11 +85,10 @@ shape = SubResource("SphereShape3D_djp6e")
 
 [node name="GroundAnchor" parent="." instance=ExtResource("3_hsdsf")]
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="Animation" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12957, 0)
 billboard = 1
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_gm2r7")
-animation = &"run"
+animation = &"waiting_right"
 autoplay = "run"
-frame_progress = 0.627524

@@ -12,9 +12,11 @@ script = ExtResource("1_k2pa8")
 
 [node name="Kopeng1" parent="." instance=ExtResource("2_wf27k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559, 0, 0.927)
+flip_sit = true
 
 [node name="Kopeng2" parent="." instance=ExtResource("2_wf27k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.679, 0, -0.794)
+flip_sit = true
 
 [node name="Kopeng3" parent="." instance=ExtResource("2_wf27k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913, 0, 0)

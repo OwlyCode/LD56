@@ -2,6 +2,8 @@ extends Node3D
 
 @onready var controller = get_node("/root/World/GameController")
 
+@export var flip_sit: bool = false
+
 var followers = []
 var leader = null
 
@@ -44,6 +46,15 @@ func get_current_leader():
 		current_leader = leaders[0]
 
 	return current_leader
+
+func _process(_delta):
+	if waiting:
+		if flip_sit:
+			$Animation.play("waiting_right")
+		else:
+			$Animation.play("waiting_left")
+	else:
+		$Animation.play("run")
 
 func _physics_process(delta):
 	if !waiting:
