@@ -368,8 +368,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -214.0
-offset_bottom = 171.0
+offset_left = -2.0
+offset_top = -288.0
+offset_right = -2.0
+offset_bottom = 147.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -400,10 +402,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -107.0
-offset_top = 231.0
-offset_right = 107.0
-offset_bottom = 262.0
+offset_left = -127.0
+offset_top = 208.5
+offset_right = 132.0
+offset_bottom = 288.5
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("7_a2mj5")
 theme_override_font_sizes/font_size = 30
@@ -413,10 +415,20 @@ Lezgo!"
 [node name="TextureRect" type="TextureRect" parent="StartScreen"]
 layout_mode = 0
 offset_left = 27.0
-offset_top = 422.0
+offset_top = 444.0
 offset_right = 606.0
-offset_bottom = 789.0
+offset_bottom = 811.0
 texture = ExtResource("14_adugt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartScreen"]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 367.0
+offset_right = 436.0
+offset_bottom = 429.0
+bbcode_enabled = true
+text = "[center]Fonts: Kaph & 6 Script
+Palette: Hept32-Endesga[/center]"
 
 [node name="GameOver" type="Panel" parent="."]
 visible = false

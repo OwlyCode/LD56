@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 	detect_gameover()
 	display_score(delta)
 
-	if not game_over:
+	if not game_over and not Globals.main_menu:
 		Globals.distance += Globals.game_speed * delta
 
 	var movings = get_tree().get_nodes_in_group("Moving")
@@ -165,10 +165,11 @@ func reset_cactus_cooldown(cooldown):
 	cactus_cooldown = cooldown / (Globals.game_speed / 12.0)
 
 func refresh_distance_display():
-	var template = "100m
-   X2"
+	var template = "AAAm
+   XB"
 
-	get_node("/root/World/DistanceDisplay").text = template.replace("100", str(int(Globals.distance / 10.0)).lpad(4, "0")).replace("2", str(Globals.flags))
+	var ran_dist = str(ceil(Globals.distance / 5)).lpad(4, "0")
+	get_node("/root/World/DistanceDisplay").text = template.replace("AAA", ran_dist).replace("B", str(Globals.flags))
 
 func _physics_process(_delta):
 	refresh_distance_display()
