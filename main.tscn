@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="7_qfjgq"]
 [ext_resource type="AudioStream" uid="uid://cg3xe0mllys3" path="res://kopeng.ogg" id="7_u105k"]
 [ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
-[ext_resource type="AudioStream" uid="uid://b08vh343imv65" path="res://weepee1.ogg" id="9_4jqly"]
 [ext_resource type="Texture2D" uid="uid://bjj505ek35cuf" path="res://flag_ui.png" id="11_faon7"]
 [ext_resource type="AudioStream" uid="uid://c2wiuumgvjlnw" path="res://weeeeeeeee.ogg" id="11_ruu64"]
 [ext_resource type="Texture2D" uid="uid://dd41qxgkspl3v" path="res://tuto.png" id="14_adugt"]
+[ext_resource type="AudioStream" uid="uid://bo4ljtcecvqch" path="res://weepee1.wav" id="15_ol32q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgpku"]
 shading_mode = 0
@@ -221,7 +221,7 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("15_ol32q")
 }],
 "times": PackedFloat32Array(0.133333)
 }
@@ -236,7 +236,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("15_ol32q")
 }],
 "times": PackedFloat32Array(0.333333)
 }
@@ -251,7 +251,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("15_ol32q")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -370,7 +370,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -2.0
 offset_top = -288.0
-offset_right = -2.0
+offset_right = 1.0
 offset_bottom = 147.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -394,7 +394,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "[color=ece910][font_size=70][center][wave  amp=50.0, freq=15.0][font=res://kaph.ttf]Kopeng RUN![/font][/wave][/center][/font_size][/color]
-[font_size=45][font=res://script.ttf][center]Made for [color=ece910]Ludum Dare 56[/color]: Tiny Creatures 
+[font_size=45][font=res://script.ttf][center]Made for [color=ece910]Ludum Dare 56[/color] - Tiny Creatures 
 By Owlycode[/center][/font][/font_size] "
 
 [node name="Button" type="Button" parent="StartScreen/RunCTA"]

@@ -81,7 +81,13 @@ func display_score(delta):
 func detect_gameover():
 	var kopaings = get_tree().get_nodes_in_group("Kopaing")
 
-	if kopaings.is_empty():
+	var count = 0
+
+	for k in kopaings:
+		if k.is_available():
+			count += 1
+
+	if count == 0:
 
 		var gameover = get_node("/root/World/GameOver")
 

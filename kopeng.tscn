@@ -67,9 +67,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_1iie4"]
-resource_name = "Standby"
-
 [sub_resource type="Animation" id="Animation_mjdpy"]
 length = 0.001
 tracks/0/type = "value"
@@ -91,6 +88,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_1iie4"]
+resource_name = "Standby"
 
 [sub_resource type="Animation" id="Animation_pek7t"]
 resource_name = "death_left"
