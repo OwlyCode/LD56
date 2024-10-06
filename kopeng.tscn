@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dq2owrv45wmvx"]
+[gd_scene load_steps=18 format=3 uid="uid://dq2owrv45wmvx"]
 
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="1_iyp4s"]
 [ext_resource type="Script" path="res://kopeng.gd" id="2_sr0xw"]
 [ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="3_hsdsf"]
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="4_dnbl8"]
+[ext_resource type="AudioStream" uid="uid://dsr13y17c88fo" path="res://outch1.ogg" id="5_1le1c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_djp6e"]
 
@@ -182,3 +183,12 @@ libraries = {
 "": SubResource("AnimationLibrary_sgbdj")
 }
 autoplay = "Standby"
+
+[node name="Outch1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1le1c")
+volume_db = -6.0
+
+[node name="Outch2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1le1c")
+volume_db = -6.0
+pitch_scale = 0.91

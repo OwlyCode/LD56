@@ -13,7 +13,7 @@ var flag = preload("res://flag.tscn")
 
 var cactus_cooldown = 2.0
 var kopeng_cooldown = 3.0
-var flag_cooldown = 30.0
+var flag_cooldown = 5.0
 
 var game_speed = 12.0
 
@@ -73,7 +73,9 @@ func _process(delta: float) -> void:
 	for moving in movings:
 		moving.position.z += game_speed * delta
 
-		if moving.position.z > 10.0:
+		if "ttl" in moving and moving.position.z > moving.ttl:
+			moving.queue_free()
+		elif moving.position.z > 10.0:
 			moving.queue_free()
 
 	if game_over or Globals.main_menu:

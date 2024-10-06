@@ -32,7 +32,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					remove_child(child)
 					get_node("/root/World").add_child(child)
 					print(leaders[0].current_leader)
-					leaders[0].current_leader.add_follower(child)
+					if leaders[0].current_leader != null:
+						leaders[0].current_leader.add_follower(child)
 					child.global_position = pos
 
-			queue_free()
+			get_node("/root/World/Weepee").play("weepee")
+
+			#queue_free()

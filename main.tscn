@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=23 format=3 uid="uid://jes66804ybiy"]
 
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
 [ext_resource type="AudioStream" uid="uid://cg3xe0mllys3" path="res://kopeng.ogg" id="7_u105k"]
+[ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
+[ext_resource type="AudioStream" uid="uid://b08vh343imv65" path="res://weepee1.ogg" id="9_4jqly"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hy8hh"]
 sky_top_color = Color(0.156863, 0.564706, 0.862745, 1)
@@ -48,6 +50,129 @@ data = PackedVector3Array(0, 150, 30, 0.2945, 150, 29.9986, 0, 90, 30, 0.2945, 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekvhu"]
 bg_color = Color(0.73, 0, 0.0486666, 0.384314)
+
+[sub_resource type="Animation" id="Animation_rj4tk"]
+resource_name = "checkpoint"
+length = 4.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Checkpoint/Faster")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_4ld0h")
+}],
+"times": PackedFloat32Array(1.46667)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Checkpoint/AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Checkpoint/AudioStreamPlayer2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0.233333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Checkpoint/AudioStreamPlayer3")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0.533333)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjph1"]
+_data = {
+"checkpoint": SubResource("Animation_rj4tk")
+}
+
+[sub_resource type="Animation" id="Animation_bvgfy"]
+resource_name = "weepee"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weepee/AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0.133333)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weepee/AudioStreamPlayer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0.333333)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weepee/AudioStreamPlayer3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4jqly")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81277"]
+_data = {
+"weepee": SubResource("Animation_bvgfy")
+}
 
 [node name="World" type="Node3D"]
 
@@ -217,6 +342,41 @@ text = "[font_size=45][right]000500
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u105k")
 autoplay = true
+
+[node name="Checkpoint" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hjph1")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Checkpoint"]
+volume_db = -6.265
+pitch_scale = 0.85
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Checkpoint"]
+volume_db = -6.265
+pitch_scale = 1.23
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Checkpoint"]
+volume_db = -6.265
+
+[node name="Faster" type="AudioStreamPlayer" parent="Checkpoint"]
+volume_db = -6.0
+
+[node name="Weepee" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_81277")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Weepee"]
+volume_db = -6.265
+pitch_scale = 0.8
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Weepee"]
+volume_db = -6.265
+pitch_scale = 1.23
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Weepee"]
+volume_db = -6.265
 
 [connection signal="button_up" from="StartScreen/RunCTA/Button" to="GameController" method="_on_start_button_up"]
 [connection signal="button_up" from="GameOver/Button" to="GameController" method="_on_button_button_up"]

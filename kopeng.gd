@@ -142,6 +142,9 @@ func push_back(movement_wish, delta):
 
 
 func die():
+	if self.dead:
+		return
+
 	self.dead = true
 	$StaticBody3D.set_process(false)
 
@@ -151,6 +154,11 @@ func die():
 		$AnimationPlayer.play("death_left")
 	else:
 		$AnimationPlayer.play("death_right")
+
+	if randi() % 2 == 0:
+		$Outch1.play()
+	else:
+		$Outch2.play()
 
 
 func is_available():
