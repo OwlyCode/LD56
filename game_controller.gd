@@ -55,6 +55,8 @@ func detect_gameover():
 
 		gameover.show()
 
+		get_node("/root/World/Music").pitch_scale = 0.5
+
 		game_over = true
 
 

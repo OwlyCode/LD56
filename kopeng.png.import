@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jav1l77dyrn3"
-path.s3tc="res://.godot/imported/kopeng.png-57803a7a792b306f8de62dba08e01652.s3tc.ctex"
+path="res://.godot/imported/kopeng.png-57803a7a792b306f8de62dba08e01652.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://kopeng.png"
-dest_files=["res://.godot/imported/kopeng.png-57803a7a792b306f8de62dba08e01652.s3tc.ctex"]
+dest_files=["res://.godot/imported/kopeng.png-57803a7a792b306f8de62dba08e01652.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
