@@ -56,4 +56,4 @@ alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_gm2r7")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.188433
+frame_progress = 0.627524

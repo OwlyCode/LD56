@@ -114,7 +114,7 @@ func push_back(movement_wish, delta):
 			var direction = (position - other.position).normalized()
 			var power = pow(KOPAING_PUSH_BACK, 0.5 / distance)
 
-			power = clamp(power, 0, 3)
+			power = clamp(power, 0, 5)
 
 			movement_wish += direction * power * delta;
 
