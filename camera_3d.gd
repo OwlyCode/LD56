@@ -1,10 +1,34 @@
 extends Camera3D
 
-func _process(delta: float) -> void:
-	# print(len(k))
-	# for x in k:
-	# 	print(x.leader)
-	# 	print(x.followers)
-	# 	print("---")
+var shake_accumulator = Vector3.ZERO
 
-	$Cylinder.rotation_degrees.x += 45.0 * delta
+var ellapsed = 0.0
+
+@onready var memorized_position = position;
+
+func _process(delta: float) -> void:
+	var kopengs = get_tree().get_nodes_in_group("Kopaing")
+	var kopeng_count = 0
+
+
+	ellapsed += delta
+
+	for k in kopengs:
+		if k.is_available():
+			kopeng_count += 1
+
+
+	var freq = 1.5 * kopeng_count
+	var amp = 0.00025 * kopeng_count
+
+	if amp > 0.006:
+		amp = 0.006
+
+	if freq > 36:
+		freq = 36
+
+	rotation.z = sin(ellapsed * freq) * amp;
+
+	position = memorized_position + shake_accumulator
+
+	get_node("/root/World/Cylinder").rotation_degrees.x += 45.0 * delta

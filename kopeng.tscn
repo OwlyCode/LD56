@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dq2owrv45wmvx"]
+[gd_scene load_steps=24 format=3 uid="uid://dq2owrv45wmvx"]
 
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="1_iyp4s"]
 [ext_resource type="Script" path="res://kopeng.gd" id="2_sr0xw"]
 [ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="3_hsdsf"]
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="4_dnbl8"]
 [ext_resource type="AudioStream" uid="uid://dsr13y17c88fo" path="res://outch1.ogg" id="5_1le1c"]
+[ext_resource type="Texture2D" uid="uid://cekl32rnixloe" path="res://dust.png" id="6_okpm4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_djp6e"]
 
@@ -150,6 +151,35 @@ _data = {
 "death_right": SubResource("Animation_rl2v0")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxjie"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_okpm4")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_io86s"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_mkhew"]
+max_value = 10.0
+_data = [Vector2(0, 2.76865), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4uttb"]
+offsets = PackedFloat32Array(0.0177778, 0.662222, 1)
+colors = PackedColorArray(0.713726, 0.407843, 0.192157, 1, 0.713726, 0.407843, 0.192157, 1, 0.713726, 0.407843, 0.192157, 1)
+
+[sub_resource type="Gradient" id="Gradient_wq15u"]
+colors = PackedColorArray(0.296875, 0.296875, 0.296875, 1, 1, 1, 1, 1)
+
 [node name="Kopeng" type="Node3D" groups=["Kopaing"]]
 script = ExtResource("2_sr0xw")
 
@@ -175,8 +205,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12957, 0)
 billboard = 1
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_gm2r7")
-animation = &"waiting_right"
+animation = &"dead"
 autoplay = "run"
+frame_progress = 0.333644
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -192,3 +223,20 @@ volume_db = -6.0
 stream = ExtResource("5_1le1c")
 volume_db = -6.0
 pitch_scale = 0.91
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_vxjie")
+amount = 16
+mesh = SubResource("QuadMesh_io86s")
+direction = Vector3(0, 0, 1)
+spread = 60.0
+flatness = 1.0
+gravity = Vector3(0, -12, 12)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+damping_min = 10.0
+damping_max = 10.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_mkhew")
+color_ramp = SubResource("Gradient_4uttb")
+color_initial_ramp = SubResource("Gradient_wq15u")

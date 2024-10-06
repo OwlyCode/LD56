@@ -11,7 +11,7 @@ var spawner = preload("res://kopeng_spawner.tscn")
 var kopeng = preload("res://kopeng.tscn")
 var flag = preload("res://flag.tscn")
 
-const FLAG_COOLDOWN = 5.0 # 30.0
+const FLAG_COOLDOWN = 30.0 # 30.0
 
 var cactus_cooldown = 2.0
 var kopeng_cooldown = 3.0
