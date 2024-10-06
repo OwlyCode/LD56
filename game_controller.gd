@@ -25,6 +25,8 @@ var chunks = [
 	[0.1, preload("res://chunks/chunk_big.tscn"), CACTUS_COOLDOWN + 1.0]
 ]
 
+var last_chunk = null
+
 func weighted_random(chunks):
 	var total = 0.0
 	for chunk in chunks:
@@ -120,12 +122,19 @@ func _process(delta: float) -> void:
 	kopeng_cooldown -= delta;
 	flag_cooldown -= delta;
 
+	if flag_cooldown < cactus_cooldown:
+		reset_cactus_cooldown(CACTUS_COOLDOWN)
+
+	if kopeng_cooldown < cactus_cooldown:
+		reset_cactus_cooldown(CACTUS_COOLDOWN)
+
 	if kopeng_cooldown < 0:
 		reset_kopeng_cooldown()
 		reset_cactus_cooldown(CACTUS_COOLDOWN)
 		var k = spawner.instantiate()
 		k.position = Vector3(randf_range(-4.5, 4.5), -200, -40)
 		get_node("/root/World").add_child(k)
+
 
 	if flag_cooldown < 0:
 		reset_flag_cooldown()
@@ -135,8 +144,12 @@ func _process(delta: float) -> void:
 		get_node("/root/World").add_child(k)
 
 	if cactus_cooldown < 0:
-		var chunk = chunks[randi() % chunks.size()]
-		chunk = weighted_random(chunks)
+		var chunk = weighted_random(chunks)
+
+		while last_chunk == chunk:
+			chunk = weighted_random(chunks)
+
+		last_chunk = chunk
 
 		cactus_cooldown = chunk[2]
 		reset_cactus_cooldown(cactus_cooldown)
@@ -194,5 +207,5 @@ func _on_button_button_up():
 
 
 func faster():
-	Globals.game_speed += 5.0
+	Globals.game_speed += 3.5
 	get_node("/root/World/Camera3D").shake_boost = 2.0
