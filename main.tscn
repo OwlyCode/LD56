@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=32 format=3 uid="uid://jes66804ybiy"]
 
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
 [ext_resource type="AudioStream" uid="uid://b08vh343imv65" path="res://weepee1.ogg" id="9_4jqly"]
 [ext_resource type="AudioStream" uid="uid://c2wiuumgvjlnw" path="res://weeeeeeeee.ogg" id="11_ruu64"]
+[ext_resource type="Texture2D" uid="uid://dd41qxgkspl3v" path="res://tuto.png" id="14_adugt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgpku"]
 shading_mode = 0
@@ -403,6 +404,13 @@ theme_override_fonts/font = ExtResource("7_a2mj5")
 theme_override_font_sizes/font_size = 30
 text = "Wanna run?
 Lezgo!"
+
+[node name="TextureRect" type="TextureRect" parent="StartScreen"]
+offset_left = 27.0
+offset_top = 422.0
+offset_right = 606.0
+offset_bottom = 789.0
+texture = ExtResource("14_adugt")
 
 [node name="GameOver" type="Panel" parent="."]
 visible = false
