@@ -22,6 +22,8 @@ var game_over = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.score = 0
+	Globals.score_accumulator = 0
+	Globals.game_speed = 12.0
 	if not Globals.main_menu:
 		get_node("/root/World/StartScreen").hide()
 

@@ -1,11 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://qau52spw28ba"]
+[gd_scene load_steps=8 format=3 uid="uid://qau52spw28ba"]
 
 [ext_resource type="Texture2D" uid="uid://cfioqlmtsjvd4" path="res://cactus.png" id="1_00wox"]
 [ext_resource type="Script" path="res://cactus.gd" id="1_436tr"]
 [ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="3_keryk"]
+[ext_resource type="Texture2D" uid="uid://flqir4o2po2g" path="res://cactus_fragment.png" id="4_ndkpr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2iqt5"]
 size = Vector3(1.07278, 1, 0.200012)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51sqw"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_ndkpr")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_g6jiq"]
+size = Vector2(0.1, 0.1)
 
 [node name="Node3D" type="Node3D" groups=["Moving"]]
 script = ExtResource("1_436tr")
@@ -24,3 +42,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00468445, 0, -0.0415344)
 shape = SubResource("BoxShape3D_2iqt5")
 
 [node name="GroundAnchor" parent="." instance=ExtResource("3_keryk")]
+
+[node name="Chunks" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52088, -0.368258)
+material_override = SubResource("StandardMaterial3D_51sqw")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.86
+local_coords = true
+mesh = SubResource("QuadMesh_g6jiq")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -24, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+damping_min = 10.0
+damping_max = 10.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0

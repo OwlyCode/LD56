@@ -32,6 +32,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					score += 100
 
 			get_node("/root/World/Checkpoint").play("checkpoint")
+			Globals.score += Globals.score_accumulator
 			Globals.score_accumulator = score
 			Globals.score_accumulator_cooldown = 4.0
 
