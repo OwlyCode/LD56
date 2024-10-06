@@ -61,6 +61,7 @@ func _process(delta):
 			$Animation.play("waiting_left")
 	else:
 		$Animation.play("run")
+		$Dust.emitting = true
 
 func _physics_process(delta):
 	if is_available():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dq2owrv45wmvx"]
+[gd_scene load_steps=25 format=3 uid="uid://dq2owrv45wmvx"]
 
 [ext_resource type="Texture2D" uid="uid://c6brud0ykr37y" path="res://icon.svg" id="1_iyp4s"]
 [ext_resource type="Script" path="res://kopeng.gd" id="2_sr0xw"]
@@ -84,6 +84,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 1.12957, 0)]
 }
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_pek7t"]
 resource_name = "death_left"
@@ -143,12 +150,17 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_iw7n7"]
+resource_name = "run"
+length = 0.5
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgbdj"]
 _data = {
 "RESET": SubResource("Animation_mjdpy"),
 "Standby": SubResource("Animation_1iie4"),
 "death_left": SubResource("Animation_pek7t"),
-"death_right": SubResource("Animation_rl2v0")
+"death_right": SubResource("Animation_rl2v0"),
+"run": SubResource("Animation_iw7n7")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxjie"]
@@ -170,7 +182,7 @@ size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_mkhew"]
 max_value = 10.0
-_data = [Vector2(0, 2.76865), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 3.91909), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_4uttb"]
@@ -201,13 +213,13 @@ shape = SubResource("SphereShape3D_djp6e")
 [node name="GroundAnchor" parent="." instance=ExtResource("3_hsdsf")]
 
 [node name="Animation" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12957, 0)
+transform = Transform3D(1.25, 0, 0, 0, 1, 0, 0, 0, 1.25, 0, 1.12957, 0)
 billboard = 1
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_gm2r7")
-animation = &"dead"
+animation = &"run"
 autoplay = "run"
-frame_progress = 0.333644
+frame_progress = 0.341321
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -224,14 +236,15 @@ stream = ExtResource("5_1le1c")
 volume_db = -6.0
 pitch_scale = 0.91
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="Dust" type="CPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_vxjie")
+emitting = false
 amount = 16
 mesh = SubResource("QuadMesh_io86s")
 direction = Vector3(0, 0, 1)
 spread = 60.0
 flatness = 1.0
-gravity = Vector3(0, -12, 12)
+gravity = Vector3(0, -24, 24)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 damping_min = 10.0

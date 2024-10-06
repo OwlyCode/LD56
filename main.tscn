@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=31 format=3 uid="uid://jes66804ybiy"]
 
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
 [ext_resource type="FontFile" uid="uid://cr3hcetf7nfe6" path="res://kaph.ttf" id="7_a2mj5"]
+[ext_resource type="Texture2D" uid="uid://cekl32rnixloe" path="res://dust.png" id="7_cd3yj"]
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="7_qfjgq"]
 [ext_resource type="AudioStream" uid="uid://cg3xe0mllys3" path="res://kopeng.ogg" id="7_u105k"]
 [ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
@@ -54,6 +55,28 @@ sky_material = SubResource("ProceduralSkyMaterial_hy8hh")
 [sub_resource type="Environment" id="Environment_jqyjx"]
 background_mode = 2
 sky = SubResource("Sky_uford")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hp30b"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_cd3yj")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_fyhqh"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_amn3d"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0177778, 0.222222, 0.466667, 0.693333, 0.862222)
+colors = PackedColorArray(0.71, 0, 0, 1, 0, 0.408, 0.68, 1, 0.00999999, 1, 0.109, 1, 1, 0.9835, 0.00999999, 1, 0.71, 0.1917, 0.60634, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekvhu"]
 bg_color = Color(0.73, 0, 0.0486666, 0.384314)
@@ -295,6 +318,44 @@ transform = Transform3D(1, 0, 0, 0, 0.898074, 0.439845, 0, -0.439845, 0.898074, 
 environment = SubResource("Environment_jqyjx")
 size = 20.0
 script = ExtResource("3_7y6su")
+
+[node name="Firework2" type="CPUParticles3D" parent="Camera3D"]
+transform = Transform3D(0.00951187, 0.449099, -0.893432, -0.44696, 0.80116, 0.397958, 0.894504, 0.395543, 0.20835, -6.8455, -2.96431, -11.9794)
+material_override = SubResource("StandardMaterial3D_hp30b")
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.6
+mesh = SubResource("QuadMesh_fyhqh")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+flatness = 1.0
+gravity = Vector3(0, -15, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_amn3d")
+
+[node name="Firework" type="CPUParticles3D" parent="Camera3D"]
+transform = Transform3D(0.00438077, -0.439841, 0.898066, 0.439841, 0.807385, 0.393283, -0.898066, 0.393283, 0.196997, 6.61371, -2.79175, -11.8949)
+material_override = SubResource("StandardMaterial3D_hp30b")
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.6
+mesh = SubResource("QuadMesh_fyhqh")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+flatness = 1.0
+gravity = Vector3(0, -15, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_amn3d")
 
 [node name="StartScreen" type="Panel" parent="."]
 anchors_preset = 14
