@@ -108,7 +108,7 @@ func _physics_process(_delta):
 	var most_advanced = null;
 
 	for kopaing in kopaings:
-		if kopaing.leader == null && !kopaing.waiting:
+		if kopaing.leader == null && kopaing.is_available():
 			if most_advanced == null or kopaing.position.z < most_advanced.position.z:
 				most_advanced = kopaing
 			leaderless.append(kopaing)

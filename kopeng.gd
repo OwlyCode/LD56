@@ -8,6 +8,7 @@ var followers = []
 var leader = null
 
 var waiting = false
+var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,8 +48,13 @@ func get_current_leader():
 
 	return current_leader
 
-func _process(_delta):
-	if waiting:
+func _process(delta):
+	if dead:
+		$Animation.rotation.z += 16.0 * delta
+		$Animation.billboard = 0
+
+		$Animation.play("dead")
+	elif waiting:
 		if flip_sit:
 			$Animation.play("waiting_right")
 		else:
@@ -57,9 +63,12 @@ func _process(_delta):
 		$Animation.play("run")
 
 func _physics_process(delta):
-	if !waiting:
+	if is_available():
 	# --- Follow the leader!
-		if leader != null && !is_instance_valid(leader):
+		if leader != null and !is_instance_valid(leader):
+			leader = null;
+
+		if leader != null and leader.dead:
 			leader = null;
 
 		handle_followers()
@@ -130,3 +139,19 @@ func push_back(movement_wish, delta):
 			movement_wish += direction * power * delta;
 
 	return movement_wish
+
+
+func die():
+	self.dead = true
+	$StaticBody3D.set_process(false)
+
+	$Animation.rotation.x = deg_to_rad(-26)
+
+	if randi() % 2 == 0:
+		$AnimationPlayer.play("death_left")
+	else:
+		$AnimationPlayer.play("death_right")
+
+
+func is_available():
+	return !dead and !waiting

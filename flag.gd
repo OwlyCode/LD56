@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -19,14 +19,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
 
 	if parent.is_in_group("Kopaing"):
-		if parent.waiting == false:
+		if parent.is_available():
 			triggered = true
 
 			var kopaings = get_tree().get_nodes_in_group("Kopaing")
 			var score = 0
 
 			for kopaing in kopaings:
-				if kopaing.waiting == false:
+				if kopaing.is_available():
 					score += 100
 
 
