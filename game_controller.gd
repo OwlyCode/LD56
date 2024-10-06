@@ -13,7 +13,7 @@ var flag = preload("res://flag.tscn")
 
 var cactus_cooldown = 2.0
 var kopeng_cooldown = 3.0
-var flag_cooldown = 5.0
+var flag_cooldown = 30.0
 
 var game_speed = 12.0
 

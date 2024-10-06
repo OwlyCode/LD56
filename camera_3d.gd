@@ -7,4 +7,4 @@ func _process(delta: float) -> void:
 	# 	print(x.followers)
 	# 	print("---")
 
-	$Cylinder.rotation_degrees.x += 180.0 * delta
+	$Cylinder.rotation_degrees.x += 45.0 * delta
