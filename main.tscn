@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=26 format=3 uid="uid://jes66804ybiy"]
 
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq2owrv45wmvx" path="res://kopeng.tscn" id="2_sfymo"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_7y6su"]
 [ext_resource type="Texture2D" uid="uid://s0y48ahhtfxt" path="res://grass.png" id="3_8pcvf"]
+[ext_resource type="FontFile" uid="uid://cr3hcetf7nfe6" path="res://kaph.ttf" id="7_a2mj5"]
 [ext_resource type="Texture2D" uid="uid://jav1l77dyrn3" path="res://kopeng.png" id="7_qfjgq"]
 [ext_resource type="AudioStream" uid="uid://cg3xe0mllys3" path="res://kopeng.ogg" id="7_u105k"]
 [ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
@@ -145,6 +146,23 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(1.76667, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"hide"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GreatDisplay")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -294,21 +312,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -978.0
-offset_top = -157.5
+offset_top = -158.5
 offset_right = 978.0
-offset_bottom = 855.5
+offset_bottom = 854.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[font_size=70][center][wave amp=50.0, freq=15.0]KOPENG RUN![/wave][/center][/font_size]
-[font_size=25][center]
-Made for Ludum Dare 56: Tiny Creatures
-By Owlycode[/center][/font_size]"
+text = "[color=ece910][font_size=70][center][wave  amp=50.0, freq=15.0][font=res://kaph.ttf]Kopeng RUN![/font][/wave][/center][/font_size][/color]
+[font_size=45][font=res://script.ttf][center]Made for [color=ece910]Ludum Dare 56[/color]: Tiny Creatures 
+By Owlycode[/center][/font][/font_size] "
 
 [node name="Button" type="Button" parent="StartScreen/RunCTA"]
 layout_mode = 1
@@ -320,8 +336,10 @@ offset_top = 231.0
 offset_right = 107.0
 offset_bottom = 262.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_a2mj5")
 theme_override_font_sizes/font_size = 30
-text = "Kopeng wanna run? Lezgo!"
+text = "Wanna run?
+Lezgo!"
 
 [node name="GameOver" type="Panel" parent="."]
 visible = false
@@ -340,17 +358,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -257.0
-offset_top = -287.0
-offset_right = 243.0
-offset_bottom = -87.0
+offset_left = -254.0
+offset_top = -311.0
+offset_right = 246.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/normal_font_size = 60
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("7_a2mj5")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]Ohnuu! Kopeng iz all [wave amp=100.0, freq=15.0][color=da2424]DED![/color][/wave][/center]"
+text = "[center]Ohnuu! Kopeng iz all... [wave amp=100.0, freq=15.0][color=da2424]
+
+[font_size=80]DED![/font_size][/color][/wave][/center]"
 
 [node name="Button" type="Button" parent="GameOver"]
 layout_mode = 1
@@ -359,37 +382,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = 188.0
-offset_right = 185.0
-offset_bottom = 238.0
+offset_left = -194.0
+offset_top = 273.0
+offset_right = 188.0
+offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_a2mj5")
 theme_override_font_sizes/font_size = 30
-text = "Kopeng wanna run again?"
+text = "Kopeng wanna
+run again?"
 
 [node name="TextureRect2" type="TextureRect" parent="GameOver"]
 layout_mode = 0
-offset_left = 324.0
-offset_top = 437.0
-offset_right = 583.0
-offset_bottom = 693.0
+offset_left = 327.0
+offset_top = 522.0
+offset_right = 586.0
+offset_bottom = 778.0
 texture = SubResource("AtlasTexture_wqnrd")
 
 [node name="TextureRect3" type="TextureRect" parent="GameOver"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 436.0
-offset_right = 323.0
-offset_bottom = 692.0
+offset_left = 67.0
+offset_top = 521.0
+offset_right = 326.0
+offset_bottom = 777.0
 texture = SubResource("AtlasTexture_wqnrd")
 
 [node name="TextureRect" type="TextureRect" parent="GameOver"]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 460.0
-offset_right = 484.0
-offset_bottom = 765.0
+offset_left = 179.0
+offset_top = 545.0
+offset_right = 487.0
+offset_bottom = 850.0
 texture = SubResource("AtlasTexture_wqnrd")
 
 [node name="FasterDisplay" type="RichTextLabel" parent="."]
@@ -399,9 +424,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.543
-offset_left = -230.0
+offset_left = -299.0
 offset_top = -129.0
-offset_right = 233.0
+offset_right = 306.0
 offset_bottom = -25.5361
 grow_horizontal = 2
 grow_vertical = 2
@@ -409,11 +434,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("7_a2mj5")
 bbcode_enabled = true
-text = "[wave amp=70.0 freq=25.0][font_size=100][center]FASTER!!![/center][/font_size][/wave]"
+text = "[color=ece910][wave amp=70.0 freq=25.0][font_size=100][center]FASTER!!![/center][/font_size][/wave][/color]"
+
+[node name="GreatDisplay" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.543
+offset_left = -299.0
+offset_top = -129.0
+offset_right = 306.0
+offset_bottom = -25.5361
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("7_a2mj5")
+bbcode_enabled = true
+text = "[rainbow][wave amp=70.0 freq=25.0][font_size=100][center]GREAT!!![/center][/font_size][/wave][/rainbow]"
 
 [node name="Score" type="RichTextLabel" parent="."]
-visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 13.0
@@ -428,7 +474,6 @@ text = "[font_size=45][right]000500
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u105k")
-volume_db = -80.0
 autoplay = true
 
 [node name="Checkpoint" type="AnimationPlayer" parent="."]
