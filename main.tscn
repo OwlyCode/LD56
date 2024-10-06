@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jes66804ybiy"]
+[gd_scene load_steps=27 format=3 uid="uid://jes66804ybiy"]
 
 [ext_resource type="Script" path="res://game_controller.gd" id="1_2el1i"]
 [ext_resource type="Script" path="res://herd_leader.gd" id="1_bvxos"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cg3xe0mllys3" path="res://kopeng.ogg" id="7_u105k"]
 [ext_resource type="AudioStream" uid="uid://l070l6xhrm8a" path="res://faster.ogg" id="8_4ld0h"]
 [ext_resource type="AudioStream" uid="uid://b08vh343imv65" path="res://weepee1.ogg" id="9_4jqly"]
+[ext_resource type="AudioStream" uid="uid://c2wiuumgvjlnw" path="res://weeeeeeeee.ogg" id="11_ruu64"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hy8hh"]
 sky_top_color = Color(0.156863, 0.564706, 0.862745, 1)
@@ -89,7 +90,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("11_ruu64")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -104,7 +105,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("11_ruu64")
 }],
 "times": PackedFloat32Array(0.233333)
 }
@@ -119,7 +120,7 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_4jqly")
+"stream": ExtResource("11_ruu64")
 }],
 "times": PackedFloat32Array(0.533333)
 }
@@ -474,6 +475,7 @@ text = "[font_size=45][right]000500
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u105k")
+volume_db = -80.0
 autoplay = true
 
 [node name="Checkpoint" type="AnimationPlayer" parent="."]
@@ -484,6 +486,7 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Checkpoint"]
 volume_db = -6.265
 pitch_scale = 0.85
+bus = &"Grave"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Checkpoint"]
 volume_db = -6.265
@@ -491,6 +494,7 @@ pitch_scale = 1.23
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Checkpoint"]
 volume_db = -6.265
+bus = &"Acute"
 
 [node name="Faster" type="AudioStreamPlayer" parent="Checkpoint"]
 volume_db = -6.0
