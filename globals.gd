@@ -8,6 +8,8 @@ var score_accumulator_cooldown = 0.0
 
 var game_speed = 12.0
 
+var distance = 0.0
+var flags = 0
 
 func camera_shake(intensity = 1.0, duration = 1):
 	var camera = get_node("/root/World/Camera3D")

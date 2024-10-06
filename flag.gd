@@ -35,6 +35,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			Globals.score += Globals.score_accumulator
 			Globals.score_accumulator = score
 			Globals.score_accumulator_cooldown = 4.0
+			Globals.flags += 1
 
 			get_node("/root/World/Camera3D/Firework").emitting = true
 			get_node("/root/World/Camera3D/Firework2").emitting = true

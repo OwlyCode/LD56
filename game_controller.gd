@@ -1,9 +1,9 @@
 extends Node
 
 const LEADER_PACKING_FORCE = 5.0;
-const LEADER_FOLLOW_FORCE = 12.0;
+const LEADER_FOLLOW_FORCE = 24.0;
 const KOPAING_PUSH_BACK = 6.0;
-const KOPAING_SPEED = 12.0;
+const KOPAING_SPEED = 24.0;
 
 var cactus = preload("res://cactus.tscn")
 var spawner = preload("res://kopeng_spawner.tscn")
@@ -20,7 +20,7 @@ var chunks = [
 	[1.0, preload("res://chunks/chunk_borders.tscn"), CACTUS_COOLDOWN],
 	[1.0, preload("res://chunks/chunk_left.tscn"), CACTUS_COOLDOWN],
 	[1.0, preload("res://chunks/chunk_right.tscn"), CACTUS_COOLDOWN],
-	[1.0, preload("res://chunks/chunk_middle.tscn"), CACTUS_COOLDOWN],
+	[1.0, preload("res://chunks/chunk_middle.tscn"), CACTUS_COOLDOWN + 0.5],
 	[1.0, preload("res://chunks/chunk_dense.tscn"), CACTUS_COOLDOWN + 1.0],
 	[0.1, preload("res://chunks/chunk_big.tscn"), CACTUS_COOLDOWN + 1.0]
 ]
@@ -48,8 +48,10 @@ var game_over = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.score = 0
+	Globals.distance = 0.0
 	Globals.score_accumulator = 0
 	Globals.game_speed = 12.0
+	Globals.flags = 0
 	if not Globals.main_menu:
 		get_node("/root/World/StartScreen").hide()
 
@@ -97,6 +99,9 @@ func _on_start_button_up():
 func _process(delta: float) -> void:
 	detect_gameover()
 	display_score(delta)
+
+	if not game_over:
+		Globals.distance += Globals.game_speed * delta
 
 	var movings = get_tree().get_nodes_in_group("Moving")
 
@@ -148,9 +153,16 @@ func reset_cactus_cooldown(cooldown):
 	cactus_cooldown = cooldown / (Globals.game_speed / 12.0)
 
 func reset_kopeng_cooldown():
-	kopeng_cooldown = KOPENG_COOLDOWN / (2.0 * Globals.game_speed / 12.0)
+	kopeng_cooldown = KOPENG_COOLDOWN / (0.5 * Globals.game_speed / 12.0)
+
+func refresh_distance_display():
+	var template = "100m
+   X2"
+
+	get_node("/root/World/DistanceDisplay").text = template.replace("100", str(int(Globals.distance / 10.0)).lpad(4, "0")).replace("2", str(Globals.flags))
 
 func _physics_process(_delta):
+	refresh_distance_display()
 	var kopaings = get_tree().get_nodes_in_group("Kopaing")
 	var leaderless = []
 	var most_advanced = null;
