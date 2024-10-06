@@ -141,3 +141,4 @@ func _on_button_button_up():
 
 func faster():
 	Globals.game_speed += 5.0
+	get_node("/root/World/Camera3D").shake_boost = 2.0

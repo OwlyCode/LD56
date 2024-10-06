@@ -22,4 +22,5 @@ func _physics_process(_delta):
 			$Chunks.emitting = true
 			$Sprite3D.queue_free()
 			$Killzone.queue_free()
+			$DestroySound.play()
 			break

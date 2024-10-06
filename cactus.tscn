@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://qau52spw28ba"]
+[gd_scene load_steps=9 format=3 uid="uid://qau52spw28ba"]
 
 [ext_resource type="Texture2D" uid="uid://cfioqlmtsjvd4" path="res://cactus.png" id="1_00wox"]
 [ext_resource type="Script" path="res://cactus.gd" id="1_436tr"]
 [ext_resource type="PackedScene" uid="uid://cwi065uufoh8w" path="res://ground_anchor.tscn" id="3_keryk"]
 [ext_resource type="Texture2D" uid="uid://flqir4o2po2g" path="res://cactus_fragment.png" id="4_ndkpr"]
+[ext_resource type="AudioStream" uid="uid://dhru3gjaw6lj0" path="res://cactus.wav" id="5_tlnaq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2iqt5"]
 size = Vector3(1.07278, 1, 0.200012)
@@ -60,3 +61,7 @@ damping_min = 10.0
 damping_max = 10.0
 scale_amount_min = 20.0
 scale_amount_max = 20.0
+
+[node name="DestroySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tlnaq")
+volume_db = -6.0
