@@ -11,11 +11,11 @@ var spawner = preload("res://kopeng_spawner.tscn")
 var kopeng = preload("res://kopeng.tscn")
 var flag = preload("res://flag.tscn")
 
+const FLAG_COOLDOWN = 5.0 # 30.0
+
 var cactus_cooldown = 2.0
 var kopeng_cooldown = 3.0
-var flag_cooldown = 30.0
-
-var game_speed = 12.0
+var flag_cooldown = FLAG_COOLDOWN
 
 var game_over = false
 
@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 	var movings = get_tree().get_nodes_in_group("Moving")
 
 	for moving in movings:
-		moving.position.z += game_speed * delta
+		moving.position.z += Globals.game_speed * delta
 
 		if "ttl" in moving and moving.position.z > moving.ttl:
 			moving.queue_free()
@@ -100,7 +100,7 @@ func _process(delta: float) -> void:
 		get_node("/root/World").add_child(k)
 
 	if flag_cooldown < 0:
-		flag_cooldown = 30.0
+		flag_cooldown = FLAG_COOLDOWN
 		var k = flag.instantiate()
 		k.position = Vector3(-5.0, -200, -40)
 		get_node("/root/World").add_child(k)
@@ -135,3 +135,7 @@ func _physics_process(_delta):
 func _on_button_button_up():
 	# reload scene
 	get_tree().reload_current_scene()
+
+
+func faster():
+	Globals.game_speed += 5.0
