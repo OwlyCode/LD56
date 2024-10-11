@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://flqir4o2po2g"
-path.s3tc="res://.godot/imported/cactus_fragment.png-6f8302f9601834a7b1e52960b988a82f.s3tc.ctex"
+path="res://.godot/imported/cactus_fragment.png-6f8302f9601834a7b1e52960b988a82f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://cactus_fragment.png"
-dest_files=["res://.godot/imported/cactus_fragment.png-6f8302f9601834a7b1e52960b988a82f.s3tc.ctex"]
+dest_files=["res://.godot/imported/cactus_fragment.png-6f8302f9601834a7b1e52960b988a82f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
